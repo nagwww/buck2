@@ -75,7 +75,8 @@ def create_class_to_source_map_from_jar(
         jar: Artifact,
         srcs: list[Artifact]) -> Artifact:
     output = actions.declare_output(name)
-    cmd = cmd_args(java_toolchain.gen_class_to_source_map[RunInfo])
+    #Added by Nag cmd = cmd_args(java_toolchain.gen_class_to_source_map[RunInfo])
+    cmd = cmd_args(java_toolchain.gen_class_to_source_map[1])
     cmd.add("-o", output.as_output())
     cmd.add(jar)
     inputs_file = actions.write("class_to_srcs_map_argsfile.txt", srcs)

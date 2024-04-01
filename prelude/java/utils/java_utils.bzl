@@ -40,7 +40,8 @@ def derive_javac(javac_attribute: [str, Dependency, Artifact]) -> [str, RunInfo,
 
 def get_java_version_attributes(ctx: AnalysisContext) -> (int, int):
     java_toolchain = ctx.attrs._java_toolchain[JavaToolchainInfo]
-    java_version = ctx.attrs.java_version
+    #java_version = ctx.attrs.java_version
+    java_version = "1.8"
     java_source = ctx.attrs.source
     java_target = ctx.attrs.target
 

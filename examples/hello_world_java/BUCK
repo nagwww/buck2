@@ -1,0 +1,10 @@
+java_binary(
+    name = "main",
+    main_class = "Main",
+    deps = [":print"],
+)
+
+java_library(
+    name = "print",
+    srcs = ["Main.java"],
+)

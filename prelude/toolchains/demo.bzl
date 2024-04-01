@@ -5,6 +5,8 @@
 # License, Version 2.0 found in the LICENSE-APACHE file in the root directory
 # of this source tree.
 
+load("@prelude//toolchains:java.bzl", "system_java_toolchain")
+load("@prelude//toolchains:dex.bzl", "system_dex_toolchain")
 load("@prelude//toolchains:cxx.bzl", "system_cxx_toolchain")
 load("@prelude//toolchains:genrule.bzl", "system_genrule_toolchain")
 load("@prelude//toolchains:go.bzl", "system_go_toolchain")
@@ -19,6 +21,16 @@ def system_demo_toolchains():
     All the default toolchains, suitable for a quick demo or early prototyping.
     Most real projects should copy/paste the implementation to configure them.
     """
+    system_dex_toolchain(
+        name = "dex",
+        visibility = ["PUBLIC"],
+    )
+
+    system_java_toolchain(
+        name = "java",
+        visibility = ["PUBLIC"],
+    )
+
     system_cxx_toolchain(
         name = "cxx",
         visibility = ["PUBLIC"],

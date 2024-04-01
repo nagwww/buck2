@@ -131,7 +131,8 @@ def _build_classpath(actions: AnalysisActions, deps: list[Dependency], additiona
 
     return None
 
-def _build_bootclasspath(bootclasspath_entries: list[Artifact], source_level: int, java_toolchain: JavaToolchainInfo) -> list[Artifact]:
+# Added by Nag def _build_bootclasspath(bootclasspath_entries: list[Artifact], source_level: int, java_toolchain: JavaToolchainInfo) -> list[Artifact]:
+def _build_bootclasspath(bootclasspath_entries: list[Artifact], source_level: int, java_toolchain: JavaToolchainInfo):
     bootclasspath_list = []
     if source_level in [7, 8]:
         if bootclasspath_entries:
@@ -385,7 +386,8 @@ def _create_jar_artifact(
     jar_out = output or ctx.actions.declare_output(paths.join(actions_identifier or "jar", "{}.jar".format(label.name)))
 
     args = [
-        java_toolchain.compile_and_package[RunInfo],
+        # Added by Nag java_toolchain.compile_and_package[RunInfo],
+        java_toolchain.compile_and_package[0],
         "--jar_builder_tool",
         cmd_args(java_toolchain.jar_builder, delimiter = " "),
         "--output",

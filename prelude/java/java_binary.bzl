@@ -37,8 +37,9 @@ def _create_fat_jar(
     extension = "sh" if _generate_script(generate_wrapper, native_libs) else "jar"
     output = ctx.actions.declare_output("{}.{}".format(ctx.label.name, extension))
 
+    # java_toolchain.fat_jar[RunInfo], changed this to java_toolchain.fat_jar[1],
     args = [
-        java_toolchain.fat_jar[RunInfo],
+        java_toolchain.fat_jar[1],
         "--jar_builder_tool",
         cmd_args(java_toolchain.jar_builder, delimiter = " "),
         "--output",
@@ -134,7 +135,8 @@ def _get_run_cmd(
     if script_mode:
         return cmd_args(["/usr/bin/env", "bash", main_artifact])
     else:
-        return cmd_args([java_toolchain.java[RunInfo]] + attrs.java_args_for_run_info + ["-jar", main_artifact])
+        # Added by Nag return cmd_args([java_toolchain.java[RunInfo]] + attrs.java_args_for_run_info + ["-jar", main_artifact])
+        return cmd_args([java_toolchain.java[1]] + attrs.java_args_for_run_info + ["-jar", main_artifact])
 
 def _get_java_tool_artifacts(java_toolchain: JavaToolchainInfo) -> list[Artifact]:
     default_info = java_toolchain.java[DefaultInfo]
